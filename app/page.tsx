@@ -26,19 +26,27 @@ export default async function Home() {
               <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
                 You are signed in as {session.user?.email}
               </p>
-              <form
-                action={async () => {
-                  "use server";
-                  await signOut();
-                }}
-              >
-                <button
-                  type="submit"
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link
+                  href="/dashboard"
                   className="flex h-12 items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc]"
                 >
-                  Sign out
-                </button>
-              </form>
+                  Go to Dashboard
+                </Link>
+                <form
+                  action={async () => {
+                    "use server";
+                    await signOut();
+                  }}
+                >
+                  <button
+                    type="submit"
+                    className="flex h-12 items-center justify-center gap-2 rounded-full border border-zinc-200 px-5 text-zinc-900 transition-colors hover:bg-zinc-100 dark:border-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-900"
+                  >
+                    Sign out
+                  </button>
+                </form>
+              </div>
             </div>
           ) : (
             <div className="flex flex-col gap-6">
